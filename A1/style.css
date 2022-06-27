@@ -1,0 +1,32 @@
+table,
+th,
+tr,
+td {
+  border: 1px solid #346647;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.address {
+  font-style: italic;
+  color: aqua;
+}
+
+.searchBar {
+  border: 3px solid #848484;
+  text-size-adjust: auto;
+  width: 50%;
+  height: 25px;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+#html {
+  color: cyan;
+}
+
+#city {
+  background-color: #346647;
+  size: 20px;
+  height: 30px;
+}
