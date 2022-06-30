@@ -22,8 +22,9 @@ td {
   padding: 10px;
 }
 
-input,
-input::placeholder {
+.searchBar::placeholder {
+  position: relative;
+  left: 20px;
   font: 20px/3 sans-serif;
 }
 
