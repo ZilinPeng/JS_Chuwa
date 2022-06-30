@@ -12,7 +12,7 @@ td {
   color: aqua;
 }
 
-input {
+.searchBar {
   margin-top: 30px;
   border: 3px solid #848484;
   text-size-adjust: auto;
