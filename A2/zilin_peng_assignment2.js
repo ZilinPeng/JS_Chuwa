@@ -82,7 +82,8 @@ function combine(l1, l2) {
     };
   });
 
-  temp.forEach((ele, index) => {
+  let result = new Array();
+  temp.forEach((ele) => {
     if (map[ele.uuid]) {
       if (ele.name) {
         map[ele.uuid].name = ele.name;
@@ -92,9 +93,11 @@ function combine(l1, l2) {
     } else {
       map[ele.uuid] = ele;
     }
+    result.push(map[ele.uuid]);
   });
-
-  return map;
+  result = [...new Set(result)];
+  result = result.sort(compare);
+  return result;
 }
 
 function compare(e1, e2) {
