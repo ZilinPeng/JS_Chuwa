@@ -4,32 +4,38 @@ const itemsObject = [
   { quantity: 5, price: 400 },
 ];
 
-function double(num) {
-  return { quantity: num.quantity * 2, price: num.price * 2 };
+function double({ quantity, price }) {
+  return { quantity: quantity * 2, price: price * 2 };
 }
 
 function doubleItemObject(itemsObject) {
   return itemsObject.map(double);
 }
 
+console.log(doubleItemObject(itemsObject));
+
 function filterCb(ele) {
-  return ele.price >= 300 && ele.quantity >= 2;
+  return ele.price > 300 && ele.quantity > 2;
 }
 
 function greater(itemsObject) {
   return itemsObject.filter(filterCb);
 }
 
+console.log(greater(itemsObject));
+
 function add(num, num2) {
   return {
     quantity: num.quantity + num2.quantity,
-    price: num.price + num2.price,
+    price: num.price + num2.price * num2.quantity,
   };
 }
 
 function sum(list) {
   return list.reduce(add);
 }
+
+console.log(sum(itemsObject));
 
 function filterStr(s) {
   return s != "";
@@ -49,6 +55,8 @@ function editString(s) {
 const string =
   " Perhaps The Easiest-to-understand   Case   For Reduce Is   To Return The Sum Of  All The Elements In  An Array  ";
 
+console.log(editString(string));
+
 const first = [
   { uuid: 2, name: "test" },
   { uuid: 5, name: "test5" },
@@ -62,19 +70,31 @@ const second = [
 ];
 
 function combine(l1, l2) {
-  let result = new Array();
+  let temp = new Array();
+  let map = new Map();
 
-  result = l1.concat(l2);
-  result = result.map((ele) => {
+  temp = l1.concat(l2);
+  temp = temp.map((ele) => {
     return {
       uuid: ele.uuid,
-      name: ele.name == undefined ? null : ele.name,
-      role: ele.role == undefined ? null : ele.role,
+      name: !ele.name ? null : ele.name,
+      role: !ele.role ? null : ele.role,
     };
   });
 
-  result = result.sort(compare);
-  return result;
+  temp.forEach((ele, index) => {
+    if (map[ele.uuid]) {
+      if (ele.name) {
+        map[ele.uuid].name = ele.name;
+      } else {
+        map[ele.uuid].role = ele.role;
+      }
+    } else {
+      map[ele.uuid] = ele;
+    }
+  });
+
+  return map;
 }
 
 function compare(e1, e2) {
