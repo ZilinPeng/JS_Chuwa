@@ -32,7 +32,7 @@ function add(num, num2) {
 }
 
 function sum(list) {
-  return list.reduce(add);
+  list.reduce(add);
 }
 
 console.log(sum(itemsObject));
@@ -42,15 +42,13 @@ function filterStr(s) {
 }
 
 function editString(s) {
-  let strArray = s
+  return s
     .trim()
     .replace(/[^0-9a-z]/gi, " ")
-    .split(" ");
-  strArray = strArray.filter(filterStr);
-  strArray = strArray.map((ele) => {
-    return ele.toLocaleLowerCase();
-  });
-  return strArray.join(" ");
+    .split(" ")
+    .filter(filterStr)
+    .join(" ")
+    .toLowerCase();
 }
 const string =
   " Perhaps The Easiest-to-understand   Case   For Reduce Is   To Return The Sum Of  All The Elements In  An Array  ";
@@ -70,7 +68,7 @@ const second = [
 ];
 
 function combine(l1, l2) {
-  let temp = new Array();
+  let temp = [];
   let map = new Map();
 
   temp = l1.concat(l2);
@@ -82,7 +80,7 @@ function combine(l1, l2) {
     };
   });
 
-  let result = new Array();
+  let result = [];
   temp.forEach((ele) => {
     if (map[ele.uuid]) {
       if (ele.name) {
@@ -96,8 +94,7 @@ function combine(l1, l2) {
     result.push(map[ele.uuid]);
   });
   result = [...new Set(result)];
-  result = result.sort(compare);
-  return result;
+  return result.sort(compare);
 }
 
 function compare(e1, e2) {
