@@ -27,37 +27,41 @@ const tableInfor = {
     },
   ],
 };
+let theadC = tableInfor.tableHeader;
+let tdataC = tableInfor.tableContent;
 
-let body = document.getElementById("body");
-
-let table = document.createElement("table");
-let thead = document.createElement("thead");
-let tbody = document.createElement("tbody");
-
-table.appendChild(thead);
-table.appendChild(tbody);
-
-body.appendChild(table);
-
-let row = document.createElement("tr");
-tableInfor.tableHeader.forEach((ele) => {
-  let thead = document.createElement("th");
-  thead.innerHTML(ele);
-  row.appendChild(thead);
+let trh = document.createElement("tr");
+trh.id = "tablehead";
+document.getElementsByClassName("table").appendChild(trh);
+let thead = theadC.map((ele) => {
+  let th = document.createElement("th");
+  th.textContent = ele;
+  return th;
 });
-thead.appendChild(row);
+document.getElementById("tablehead").appendChild(...thead);
+
+let tabledata = tdataC.map((eleC) => {
+  let tr = document.createElement("tr");
+  let data = theadC.map((ele) => {
+    let td = document.createElement("td");
+    td.textContent = eleC[ele];
+    return td;
+  });
+  document.querySelector("tr").appendChild(...data);
+  return tr;
+});
+document.getElementById("tablehead").appendChild(...tabledata);
 
 const list = ["HTML", "JavaScript", "CSS", "React", "Redux", "Java"];
-let ul = document.createElement("ul");
-let ol = document.createElement("ol");
-list.forEach((ele) => {
-  let li = createElement("li");
-  li.innerHTML = ele;
-  ul.appendChild(li);
-  ol.appendChild(li);
+
+let li = list.map((ele) => {
+  let item = document.createElement("li");
+  item.textContent = ele;
+  return item;
 });
-body.appendChild(ul);
-body.appendChild(ol);
+
+document.getElementsByClassName("ul").appendChild(...li);
+document.getElementsByClassName("ol").appendChild(...li);
 
 const dropDownList = [
   { value: "newark", content: "Newark" },
@@ -67,13 +71,12 @@ const dropDownList = [
   { value: "dalyCity", content: "Daly City" },
   { value: "sanJose", content: "San Jose" },
 ];
-let select = document.createElement("select");
-select.name = "city";
-select.id = "city";
-dropDownList.forEach((ele) => {
+
+let option = dropDownList.map((ele) => {
   let option = document.createElement("option");
   option.value = ele.value;
   option.text = ele.content;
-  select.appendChild(option);
+  return option;
 });
-body.appendChild(select);
+
+document.getElementById("city").appendChild(...option);
